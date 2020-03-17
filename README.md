@@ -1,2 +1,4 @@
 # PopPopTradingCards
 Practice Project
+
+The Trading Card Tracker app will make it easier for trading card enthusiasts of any sort to keep track of their physical card collections. This ease will be accomplished by providing users a searchable online list of the cards that they own, saving hours that they would otherwise spend flipping through binders or racking their brains trying to figure out where they put a specific card. Users would also be able to see others’ collections, allowing for easier trades. This application would be built using ASP.NET Core MVC, and the code-first approach in Entity Framework Core. It would communicate with databases created in SQL using Microsoft SQL Server Management Express. Consuming the Amazon Product Advertising API would be beneficial for bringing the Trading Card Tracker to a business scale, however we will not be utilizing it in our MVP since calls to that API cost money.
