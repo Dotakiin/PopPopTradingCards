@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PopPopTradingCardsDataAccess
 {
-    interface IMapper
+    public interface IMapper
     {
     }
 }
