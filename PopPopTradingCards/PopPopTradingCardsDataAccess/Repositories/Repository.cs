@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using PopPopTradingCardsLib.Interfaces;
 using System.Linq;
+using Entity = PopPopTradingCardsDataAccess.Entities;
+using Lib = PopPopTradingCardsLib.Models;
 using PopPopTradingCardsDataAccess.Entities;
 
 namespace PopPopTradingCardsDataAccess.Repositories
@@ -68,6 +70,56 @@ namespace PopPopTradingCardsDataAccess.Repositories
             users = users.Where(x => x.Username == name && x.Password == hash);
             User user = users.FirstOrDefault();
             return Mapper.Map(user);
+        }
+
+        public IEnumerable<Lib.MagicCard> GetMagicCards()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Lib.BaseballCard> GetBaseballCards()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Lib.MagicCard GetMagicCard(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Lib.BaseballCard GetBaseballCard(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PostMagicCard(Lib.MagicCard card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PostBaseballCard(Lib.BaseballCard card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PutMagicCard(Lib.MagicCard card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PutBaseballCard(Lib.BaseballCard card)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteMagicCard(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteBaseballCard(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
