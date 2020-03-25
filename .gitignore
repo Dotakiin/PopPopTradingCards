@@ -9,6 +9,7 @@ nupkg/
 # Visual Studio Code
 .vscode
 
+Services.code-workspace
 # Rider
 .idea
 

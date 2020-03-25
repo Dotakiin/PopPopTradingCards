@@ -19,4 +19,10 @@
     <Folder Include="Repositories\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PopPopTradingCardsDataAccess\PopPopTradingCardsDataAccess.csproj" />
+    <ProjectReference Include="..\PopPopTradingCardsLib\PopPopTradingCardsLib.csproj" />
+    <ProjectReference Include="..\PopPopTradingCardsWebUi\PopPopTradingCardsWebUI.csproj" />
+  </ItemGroup>
+
 </Project>
