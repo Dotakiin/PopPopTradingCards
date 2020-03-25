@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PopPopTradingCards.Entities
+namespace PopPopTradingCardsDataAccess.Entities
 {
 	public class BaseballCard
 	{

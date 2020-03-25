@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using PopPopTradingCardsDataAccess.Entities;
 
-namespace PopPopTradingCardsLib.Models
+namespace PopPopTradingCardsDataAccess
 {
     public class PopPopTradingCardsDbContext : DbContext
     {
