@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
-[Table("User", Schema = "TradingCardTracker")]
-public class User
+namespace PopPopTradingCardsLib.Models
 {
-	public User()
+	public class User
 	{
+		public int Id { get; set; }
+		public string Username { get; set; }
+		public string Password { get; set; }
 	}
-
-	[Key]
-	public int Id { get; set; }
-
-	[Required]
-	public string Username { get; set; }
-
-	[Required, DataType(DataType.Password)]
-	public string Password { get; set; }
-	public virtual ICollection<MagicCard> MagicCards { get; set; }
-	public virtual ICollection<BaseballCard> BaseballCards { get; set; }
 }
