@@ -74,52 +74,86 @@ namespace PopPopTradingCardsDataAccess.Repositories
 
         public IEnumerable<Lib.MagicCard> GetMagicCards()
         {
-            throw new NotImplementedException();
+            var e_cards = _context.MagicCards.ToList<Entities.MagicCard>();
+            var l_cards = new List<Lib.MagicCard>();
+
+            foreach(Entities.MagicCard card in e_cards)
+            {
+                var l_card = _mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
         }
 
         public IEnumerable<Lib.BaseballCard> GetBaseballCards()
         {
-            throw new NotImplementedException();
+            var e_cards = _context.BaseballCards.ToList<Entities.BaseballCard>();
+            var l_cards = new List<Lib.BaseballCard>();
+
+            foreach(Entities.BaseballCard card in e_cards)
+            {
+                var l_card = Mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
         }
 
         public Lib.MagicCard GetMagicCard(int id)
         {
-            throw new NotImplementedException();
+            var e_card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
+            var l_card = _mapper.Map(e_card);
+            return l_card;
         }
 
         public Lib.BaseballCard GetBaseballCard(int id)
         {
-            throw new NotImplementedException();
+            var e_card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
+            var l_card = _mapper.Map(e_card);
+            return l_card;
         }
 
         public void PostMagicCard(Lib.MagicCard card)
         {
-            throw new NotImplementedException();
+            var e_card = _mapper.Map(card);
+            _context.MagicCards.Add(e_card);
+            _context.SaveChanges();
         }
 
         public void PostBaseballCard(Lib.BaseballCard card)
         {
-            throw new NotImplementedException();
+            var e_card = _mapper.Map(card);
+            _context.BaseballCards.Add(e_card);
+            _context.SaveChanges();
         }
 
         public void PutMagicCard(Lib.MagicCard card)
         {
-            throw new NotImplementedException();
+            var e_card = _mapper.Map(card);
+            _context.MagicCards.Update(e_card);
+            _context.SaveChanges();
         }
 
         public void PutBaseballCard(Lib.BaseballCard card)
         {
-            throw new NotImplementedException();
+            var e_card = _mapper.Map(card);
+            _context.BaseballCards.Update(e_card);
+            _context.SaveChanges();
         }
 
         public void DeleteMagicCard(int id)
         {
-            throw new NotImplementedException();
+            var card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
+            _context.MagicCards.Remove(card);
+            _context.SaveChanges();
         }
 
         public void DeleteBaseballCard(int id)
         {
-            throw new NotImplementedException();
+            var card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
+            _context.BaseballCards.Remove(card);
+            _context.SaveChanges();
         }
     }
 }
