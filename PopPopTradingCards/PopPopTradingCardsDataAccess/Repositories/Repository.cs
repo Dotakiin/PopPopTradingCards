@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using PopPopTradingCardsLib.Interfaces;
 using System.Linq;
+using Entity = PopPopTradingCardsDataAccess.Entities;
+using Lib = PopPopTradingCardsLib.Models;
 using PopPopTradingCardsDataAccess.Entities;
 
 namespace PopPopTradingCardsDataAccess.Repositories
@@ -68,6 +70,90 @@ namespace PopPopTradingCardsDataAccess.Repositories
             users = users.Where(x => x.Username == name && x.Password == hash);
             User user = users.FirstOrDefault();
             return Mapper.Map(user);
+        }
+
+        public IEnumerable<Lib.MagicCard> GetMagicCards()
+        {
+            var e_cards = _context.MagicCards.ToList<Entities.MagicCard>();
+            var l_cards = new List<Lib.MagicCard>();
+
+            foreach(Entities.MagicCard card in e_cards)
+            {
+                var l_card = _mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
+        }
+
+        public IEnumerable<Lib.BaseballCard> GetBaseballCards()
+        {
+            var e_cards = _context.BaseballCards.ToList<Entities.BaseballCard>();
+            var l_cards = new List<Lib.BaseballCard>();
+
+            foreach(Entities.BaseballCard card in e_cards)
+            {
+                var l_card = Mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
+        }
+
+        public Lib.MagicCard GetMagicCard(int id)
+        {
+            var e_card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
+            var l_card = _mapper.Map(e_card);
+            return l_card;
+        }
+
+        public Lib.BaseballCard GetBaseballCard(int id)
+        {
+            var e_card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
+            var l_card = _mapper.Map(e_card);
+            return l_card;
+        }
+
+        public void PostMagicCard(Lib.MagicCard card)
+        {
+            var e_card = _mapper.Map(card);
+            _context.MagicCards.Add(e_card);
+            _context.SaveChanges();
+        }
+
+        public void PostBaseballCard(Lib.BaseballCard card)
+        {
+            var e_card = _mapper.Map(card);
+            _context.BaseballCards.Add(e_card);
+            _context.SaveChanges();
+        }
+
+        public void PutMagicCard(Lib.MagicCard card)
+        {
+            var e_card = _mapper.Map(card);
+            _context.MagicCards.Update(e_card);
+            _context.SaveChanges();
+        }
+
+        public void PutBaseballCard(Lib.BaseballCard card)
+        {
+            var e_card = _mapper.Map(card);
+            _context.BaseballCards.Update(e_card);
+            _context.SaveChanges();
+        }
+
+        public void DeleteMagicCard(int id)
+        {
+            var card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
+            _context.MagicCards.Remove(card);
+            _context.SaveChanges();
+        }
+
+        public void DeleteBaseballCard(int id)
+        {
+            var card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
+            _context.BaseballCards.Remove(card);
+            _context.SaveChanges();
         }
     }
 }
