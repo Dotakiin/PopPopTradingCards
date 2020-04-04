@@ -25,8 +25,30 @@ namespace PopPopTradingCardsWebUI.Controllers
             try
             {
                 var Cards = _repo.GetMagicCards();
+                var W_Cards = new List<Models.MagicCard>();
 
-                return View(Cards);
+                foreach(Lib.MagicCard c in Cards)
+                {
+                    var w_card = new Models.MagicCard()
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        Name = c.Name,
+                        Color = c.Color,
+                        CMC = c.CMC,
+                        Type = c.Type,
+                        Rarity = c.Rarity,
+                        Booster = c.Booster,
+                        Image = c.Image,
+                        Location = c.Location
+                    };
+
+                    W_Cards.Add(w_card);
+                    
+                }
+                
+
+                return View(W_Cards);
             }
             catch(Exception)
             {
@@ -41,8 +63,25 @@ namespace PopPopTradingCardsWebUI.Controllers
             try
             {
                 var Cards = _repo.GetBaseballCards();
+                var W_Cards = new List<Models.BaseballCard>();
 
-                return View(Cards);
+                foreach(Lib.BaseballCard c in Cards)
+                {
+                    var w_card = new Models.BaseballCard()
+                    {
+                        Id = c.Id,
+                        UserId = c.UserId,
+                        PlayerName = c.PlayerName,
+                        Team = c.Team,
+                        Year = c.Year,
+                        Image = c.Image,
+                        Location = c.Location
+                    };
+
+                    W_Cards.Add(w_card);
+                }
+
+                return View(W_Cards);
             }
             catch(Exception)
             {
@@ -55,9 +94,22 @@ namespace PopPopTradingCardsWebUI.Controllers
         {
             try
             {
-                var Card = _repo.GetMagicCard(id);
+                var card = _repo.GetMagicCard(id);
+                var w_card = new Models.MagicCard()
+                {
+                    Id = card.Id,
+                    UserId = card.UserId,
+                    Name = card.Name,
+                    Color = card.Color,
+                    CMC = card.CMC,
+                    Type = card.Type,
+                    Rarity = card.Rarity,
+                    Booster = card.Booster,
+                    Image = card.Image,
+                    Location = card.Location
+                };
 
-                return View(Card);
+                return View(w_card);
             }
             catch(Exception)
             {
@@ -70,9 +122,19 @@ namespace PopPopTradingCardsWebUI.Controllers
         {
             try
             {
-                var Card = _repo.GetBaseballCard(id);
+                var card = _repo.GetBaseballCard(id);
+                var w_card = new Models.BaseballCard()
+                {
+                    Id = card.Id,
+                    UserId = card.UserId,
+                    PlayerName = card.PlayerName,
+                    Team = card.Team,
+                    Year = card.Year,
+                    Image = card.Image,
+                    Location = card.Location
+                };
 
-                return View(Card);
+                return View(w_card);
             }
             catch(Exception)
             {

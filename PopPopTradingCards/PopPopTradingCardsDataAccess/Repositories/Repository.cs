@@ -77,12 +77,12 @@ namespace PopPopTradingCardsDataAccess.Repositories
             var e_cards = _context.MagicCards.ToList<Entities.MagicCard>();
             var l_cards = new List<Lib.MagicCard>();
 
-            foreach(Entities.MagicCard card in e_cards)
+            foreach(MagicCard card in e_cards)
             {
                 var l_card = _mapper.Map(card);
                 l_cards.Add(l_card);
             }
-
+            
             return l_cards;
         }
 
@@ -91,12 +91,12 @@ namespace PopPopTradingCardsDataAccess.Repositories
             var e_cards = _context.BaseballCards.ToList<Entities.BaseballCard>();
             var l_cards = new List<Lib.BaseballCard>();
 
-            foreach(Entities.BaseballCard card in e_cards)
+            foreach(BaseballCard card in e_cards)
             {
-                var l_card = Mapper.Map(card);
+                var l_card = _mapper.Map(card);
                 l_cards.Add(l_card);
             }
-
+            
             return l_cards;
         }
 
@@ -104,6 +104,7 @@ namespace PopPopTradingCardsDataAccess.Repositories
         {
             var e_card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
             var l_card = _mapper.Map(e_card);
+
             return l_card;
         }
 
@@ -111,6 +112,7 @@ namespace PopPopTradingCardsDataAccess.Repositories
         {
             var e_card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
             var l_card = _mapper.Map(e_card);
+
             return l_card;
         }
 
