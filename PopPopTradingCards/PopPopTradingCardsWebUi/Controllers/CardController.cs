@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using PopPopTradingCardsLib.Interfaces;
 using PopPopTradingCardsDataAccess;
 using Lib = PopPopTradingCardsLib.Models;
+using Microsoft.AspNetCore.Http;
+using PopPopTradingCardsWebUI.Models;
+using Newtonsoft.Json;
 
 namespace PopPopTradingCardsWebUI.Controllers
 {
@@ -19,6 +22,62 @@ namespace PopPopTradingCardsWebUI.Controllers
             _repo = repo;
         }
 
+        public IActionResult MyCollections()
+        {
+            if (HttpContext.Session.Id == null)
+            {
+                object o;
+                TempData.TryGetValue("Id", out o);
+                HttpContext.Session.SetInt32("Id", JsonConvert.DeserializeObject<Int32>((string)o));
+                object p;
+                TempData.TryGetValue("Username", out p);
+                HttpContext.Session.SetString("Username", JsonConvert.DeserializeObject<String>((string)p));
+            }
+            var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("Id"));
+            if(Cards.Count()>0)
+            {
+                ViewBag.MTG = "yes";
+            }
+            var Cards2 = _repo.GetBaseballCards(HttpContext.Session.GetInt32("Id"));
+            if (Cards2.Count() > 0)
+            {
+                ViewBag.Baseball = "yes";
+            }
+            return View();
+        }
+        public IActionResult ViewMagicCards()
+        {
+            var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("Id"));
+            return View(Cards);
+        }
+        public IActionResult OtherCollections()
+        {
+            return View();
+        }
+        public IActionResult OtherCollectionsView()
+        {
+            return View();
+        }
+        public IActionResult AddCard()
+        {
+            return View();
+        }
+        public IActionResult AddCardAction(CardTypeViewModel c, IFormCollection form)
+        {
+            ViewBag.UserId = HttpContext.Session.GetString("Id");
+            AddMagicCardViewModels model = new AddMagicCardViewModels();
+            if (c.cardType == "MTG")
+            {
+                var Cards = _repo.GetMagicCards(-1);
+                model.MagicCards = Cards.ToList();
+                return View("CreateMagicCard", model);
+            }
+            else
+            {
+                var Cards = _repo.GetBaseballCards(-1);
+                return View("CreateBaseballCard", model);
+            }
+        }
         // Get list of Magic Cards
         public IActionResult MagicIndex()
         {
@@ -81,13 +140,35 @@ namespace PopPopTradingCardsWebUI.Controllers
         }
 
         // Post a new Magic card to the database
-        public IActionResult PostMagicCard(Lib.MagicCard card)
+        public IActionResult PostMagicCard(AddMagicCardViewModels c, IFormCollection form)
         {
             try
             {
+                Lib.MagicCard ca = _repo.GetMagicCard(c.id);
+                Lib.MagicCard card = new Lib.MagicCard()
+                {
+                    Booster = ca.Booster,
+                    CMC = ca.CMC,
+                    Color = ca.Color,
+                    Image = ca.Image,
+                    Location = c.Location,
+                    Name = ca.Name,
+                    Rarity = ca.Rarity,
+                    Type = ca.Type,
+                    UserId = Convert.ToInt32(HttpContext.Session.GetInt32("Id"))
+                };
                 _repo.PostMagicCard(card);
-
-                return NoContent();
+                var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("id"));
+                if (Cards.Count() > 0)
+                {
+                    ViewBag.MTG = "yes";
+                }
+                var Cards2 = _repo.GetBaseballCards(HttpContext.Session.GetInt32("id"));
+                if (Cards.Count() > 0)
+                {
+                    ViewBag.Baseball = "yes";
+                }
+                return View("MyCollections");
             }
             catch(Exception)
             {

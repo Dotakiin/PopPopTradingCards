@@ -1,0 +1,37 @@
+﻿@model PopPopTradingCardsDataAccess.Entities.User
+
+@{
+    ViewData["Title"] = "Signup";
+}
+
+
+
+<h4>New User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SignupAction">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+                @if (ViewData["SignupStatus"] != null)
+                {
+                    <span class="text-danger">That Username is unavailable.</span>
+                }
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input type="password" asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign Up" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

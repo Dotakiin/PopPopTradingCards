@@ -5,13 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using PopPopTradingCardsLib.Models;
+using PopPopTradingCardsDataAccess;
+using PopPopTradingCardsDataAccess.Repositories;
+using PopPopTradingCardsLib.Interfaces;
 
-namespace PopPopTradingCards
+namespace PopPopTradingCardsWebUI
 {
     public class Startup
     {
@@ -25,12 +28,23 @@ namespace PopPopTradingCards
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(300);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             var connectionString = Configuration.GetConnectionString("PopPopTradingCardsDb");
 
             services.AddDbContext<PopPopTradingCardsDbContext>(options =>
                 options.UseSqlServer(connectionString));
-
-            services.AddControllersWithViews();
+            services.AddScoped<IRepository, Repository>();
+            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            services.AddControllersWithViews().AddSessionStateTempDataProvider();
+            services.AddRazorPages().AddSessionStateTempDataProvider();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,11 +62,9 @@ namespace PopPopTradingCards
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

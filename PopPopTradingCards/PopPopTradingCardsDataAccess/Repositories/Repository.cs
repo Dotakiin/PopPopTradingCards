@@ -13,25 +13,20 @@ namespace PopPopTradingCardsDataAccess.Repositories
     {
         private readonly PopPopTradingCardsDbContext _context;
 
-        // the mapper tool
-        private readonly IMapper _mapper;
-
         // constructor
-        public Repository(PopPopTradingCardsDbContext db, IMapper mapper)
+        public Repository(PopPopTradingCardsDbContext db)
         {
             // inject the database
             _context = db ?? throw new ArgumentNullException(nameof(db), "Context cannot be null.");
-
-            // instantiate the mapper
-            _mapper = mapper;
         }
 
         public bool CheckAvailability(string name)
         {
             List<string> names = new List<string>();
-            IQueryable<User> users = _context.Users;
+            IQueryable<User> users = _context.User;
             users = users.Where(x => x.Username == name);
-            if (users.Count() == 0)
+            int count = users.Count();
+            if (count == 0)
             {
                 return true;
             }
@@ -54,6 +49,7 @@ namespace PopPopTradingCardsDataAccess.Repositories
                     Password = hash,
                 };
                 _context.Add<User>(newUser);
+                _context.SaveChanges();
             }
             else
             {
@@ -61,25 +57,45 @@ namespace PopPopTradingCardsDataAccess.Repositories
             }
         }
 
-        public PopPopTradingCardsLib.Models.User Login(string name, string pass)
+        public int Login(string name, string pass)
         {
             byte[] data = System.Text.Encoding.ASCII.GetBytes(pass);
             data = new System.Security.Cryptography.SHA256Managed().ComputeHash(data);
             String hash = System.Text.Encoding.ASCII.GetString(data);
-            IQueryable<User> users = _context.Users;
+            IQueryable<User> users = _context.User;
             users = users.Where(x => x.Username == name && x.Password == hash);
-            User user = users.FirstOrDefault();
-            return Mapper.Map(user);
+            if (users.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                User u = users.First();
+                return u.Id;
+            }
         }
 
         public IEnumerable<Lib.MagicCard> GetMagicCards()
         {
-            var e_cards = _context.MagicCards.ToList<Entities.MagicCard>();
+            var e_cards = _context.MagicCard.ToList<Entities.MagicCard>();
             var l_cards = new List<Lib.MagicCard>();
 
             foreach(Entities.MagicCard card in e_cards)
             {
-                var l_card = _mapper.Map(card);
+                var l_card = Mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
+        }
+        public IEnumerable<Lib.MagicCard> GetMagicCards(int? id)
+        {
+            var e_cards = _context.MagicCard.Where(x=>x.UserId==id).ToList<Entities.MagicCard>();
+            var l_cards = new List<Lib.MagicCard>();
+
+            foreach (Entities.MagicCard card in e_cards)
+            {
+                var l_card = Mapper.Map(card);
                 l_cards.Add(l_card);
             }
 
@@ -88,7 +104,7 @@ namespace PopPopTradingCardsDataAccess.Repositories
 
         public IEnumerable<Lib.BaseballCard> GetBaseballCards()
         {
-            var e_cards = _context.BaseballCards.ToList<Entities.BaseballCard>();
+            var e_cards = _context.BaseballCard.ToList<Entities.BaseballCard>();
             var l_cards = new List<Lib.BaseballCard>();
 
             foreach(Entities.BaseballCard card in e_cards)
@@ -99,60 +115,73 @@ namespace PopPopTradingCardsDataAccess.Repositories
 
             return l_cards;
         }
+        public IEnumerable<Lib.BaseballCard> GetBaseballCards(int? id)
+        {
+            var e_cards = _context.BaseballCard.Where(x=>x.UserId==id).ToList<Entities.BaseballCard>();
+            var l_cards = new List<Lib.BaseballCard>();
+
+            foreach (Entities.BaseballCard card in e_cards)
+            {
+                var l_card = Mapper.Map(card);
+                l_cards.Add(l_card);
+            }
+
+            return l_cards;
+        }
 
         public Lib.MagicCard GetMagicCard(int id)
         {
-            var e_card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
-            var l_card = _mapper.Map(e_card);
+            var e_card = _context.MagicCard.SingleOrDefault(x => x.Id == id);
+            var l_card = Mapper.Map(e_card);
             return l_card;
         }
 
         public Lib.BaseballCard GetBaseballCard(int id)
         {
-            var e_card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
-            var l_card = _mapper.Map(e_card);
+            var e_card = _context.BaseballCard.SingleOrDefault(x => x.Id == id);
+            var l_card = Mapper.Map(e_card);
             return l_card;
         }
 
         public void PostMagicCard(Lib.MagicCard card)
         {
-            var e_card = _mapper.Map(card);
-            _context.MagicCards.Add(e_card);
+            var e_card = Mapper.Map(card);
+            _context.MagicCard.Add(e_card);
             _context.SaveChanges();
         }
 
         public void PostBaseballCard(Lib.BaseballCard card)
         {
-            var e_card = _mapper.Map(card);
-            _context.BaseballCards.Add(e_card);
+            var e_card = Mapper.Map(card);
+            _context.BaseballCard.Add(e_card);
             _context.SaveChanges();
         }
 
         public void PutMagicCard(Lib.MagicCard card)
         {
-            var e_card = _mapper.Map(card);
-            _context.MagicCards.Update(e_card);
+            var e_card = Mapper.Map(card);
+            _context.MagicCard.Update(e_card);
             _context.SaveChanges();
         }
 
         public void PutBaseballCard(Lib.BaseballCard card)
         {
-            var e_card = _mapper.Map(card);
-            _context.BaseballCards.Update(e_card);
+            var e_card = Mapper.Map(card);
+            _context.BaseballCard.Update(e_card);
             _context.SaveChanges();
         }
 
         public void DeleteMagicCard(int id)
         {
-            var card = _context.MagicCards.SingleOrDefault(x => x.Id == id);
-            _context.MagicCards.Remove(card);
+            var card = _context.MagicCard.SingleOrDefault(x => x.Id == id);
+            _context.MagicCard.Remove(card);
             _context.SaveChanges();
         }
 
         public void DeleteBaseballCard(int id)
         {
-            var card = _context.BaseballCards.SingleOrDefault(x => x.Id == id);
-            _context.BaseballCards.Remove(card);
+            var card = _context.BaseballCard.SingleOrDefault(x => x.Id == id);
+            _context.BaseballCard.Remove(card);
             _context.SaveChanges();
         }
     }

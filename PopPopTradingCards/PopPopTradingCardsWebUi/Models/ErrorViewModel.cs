@@ -1,6 +1,6 @@
 using System;
 
-namespace PopPopTradingCards.Models
+namespace PopPopTradingCardsWebUI.Models
 {
     public class ErrorViewModel
     {

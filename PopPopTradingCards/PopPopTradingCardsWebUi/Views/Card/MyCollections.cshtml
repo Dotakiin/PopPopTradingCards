@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "MyCollections";
+}
+
+<h1>MyCollections</h1>
+
+@if (ViewBag.MTG == "yes")
+{
+<a asp-action="ViewMagicCards"><img src="https://mtg.gamepedia.com/File:Magic_card_back.jpg" /></a>
+}
+@if (ViewBag.Baseball == "yes")
+{
+<a asp-action="ViewBaseballCards"><img src="Images/Baseball.jpg" /></a>
+}
+@if (ViewBag.MTG != "yes" && ViewBag.Baseball != "yes")
+{
+        <span>You have no cards in our system. Add a card <a asp-action="AddCard">here.</a></span>
+}

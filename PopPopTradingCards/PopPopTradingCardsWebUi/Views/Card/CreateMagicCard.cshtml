@@ -1,0 +1,32 @@
+﻿@model AddMagicCardViewModels
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>View</h1>
+
+<h4>MagicCard</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostMagicCard">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                        @foreach (var item in Model.MagicCards)
+                        {
+                            <p><input type="radio" name="id"value=" @item.Id"/>@item.Name</p>
+                        }
+                </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+

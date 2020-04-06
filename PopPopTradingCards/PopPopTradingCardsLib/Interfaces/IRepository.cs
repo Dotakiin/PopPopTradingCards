@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using PopPopTradingCardsLib.Models;
-using Lib = PopPopTradingCardsLib.Models;
 
 namespace PopPopTradingCardsLib.Interfaces
 {
     public interface IRepository
     {
         public void CreateAccount(string name, string pass);
-        public User Login(string name, string pass);
+        public int Login(string name, string pass);
         public bool CheckAvailability(string name);
         IEnumerable<MagicCard> GetMagicCards();
+        IEnumerable<MagicCard> GetMagicCards(int? id);
         IEnumerable<BaseballCard> GetBaseballCards();
+        IEnumerable<BaseballCard> GetBaseballCards(int? id);
         MagicCard GetMagicCard(int id);
         BaseballCard GetBaseballCard(int id);
         void PostMagicCard(MagicCard card);

@@ -9,9 +9,9 @@ namespace PopPopTradingCardsDataAccess
 {
     public class Mapper
     {
-        public static PopPopTradingCardsLib.Models.User Map(Entities.User u)
+        public static Lib.User Map(Entities.User u)
         {
-            PopPopTradingCardsLib.Models.User user = new PopPopTradingCardsLib.Models.User()
+            Lib.User user = new Lib.User()
             {
                 Password = u.Password,
                 Username = u.Username,
