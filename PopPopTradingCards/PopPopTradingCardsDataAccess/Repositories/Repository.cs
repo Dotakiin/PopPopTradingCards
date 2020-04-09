@@ -75,6 +75,20 @@ namespace PopPopTradingCardsDataAccess.Repositories
             }
         }
 
+        public IEnumerable<Lib.User> GetAllUsers()
+        {
+            var e_users = _context.User.ToList<Entities.User>();
+            var l_users = new List<Lib.User>();
+
+            foreach (var user in e_users)
+            {
+                var l_user = Mapper.Map(user);
+                l_users.Add(l_user);
+            }
+
+            return l_users;
+        }
+
         public IEnumerable<Lib.MagicCard> GetMagicCards()
         {
             var e_cards = _context.MagicCard.ToList<Entities.MagicCard>();
