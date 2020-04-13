@@ -25,7 +25,7 @@ namespace PopPopTradingCardsLib.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BaseballCards",
+                name: "BaseballCard",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -50,7 +50,7 @@ namespace PopPopTradingCardsLib.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MagicCards",
+                name: "MagicCard",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)

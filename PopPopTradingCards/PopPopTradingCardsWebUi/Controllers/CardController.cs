@@ -250,5 +250,25 @@ namespace PopPopTradingCardsWebUI.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        public IActionResult OtherCollection(int id)
+        {
+            var user = _repo.GetUserById(id);
+
+            if(user != null)
+            {
+                var model = new OtherCollectionViewModel
+                {
+                    Username = user.Username,
+                    MagicCards = _repo.GetMagicCards(user.Id),
+                    BaseballCards = _repo.GetBaseballCards(user.Id)
+                };
+
+                return View(model);
+            }
+
+            return View("Error");
+        }
     }
 }

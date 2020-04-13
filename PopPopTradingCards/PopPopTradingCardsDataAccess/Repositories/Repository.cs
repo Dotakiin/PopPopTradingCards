@@ -89,6 +89,13 @@ namespace PopPopTradingCardsDataAccess.Repositories
             return l_users;
         }
 
+        // Get reference to a user by a given id
+        public Lib.User GetUserById(int id)
+        {
+            var e_user = _context.User.Where(u => u.Id == id).FirstOrDefault();
+            return Mapper.Map(e_user);
+        }
+
         public IEnumerable<Lib.MagicCard> GetMagicCards()
         {
             var e_cards = _context.MagicCard.ToList<Entities.MagicCard>();

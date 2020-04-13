@@ -54,7 +54,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Mickey_Mantle1952.jpg",
+                            Image = "Images/Mickey_Mantle1952.jpg",
                             Location = "Red box in Attic",
                             PlayerName = "Micky Mantle",
                             Team = "New York Yankees",
@@ -64,7 +64,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Mickey_Mantle1952.jpg",
+                            Image = "Images/Mickey_Mantle1952.jpg",
                             Location = "Red box in Attic",
                             PlayerName = "Micky Mantle",
                             Team = "New York Yankees",
@@ -74,7 +74,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Mickey_Mantle1952.jpg",
+                            Image = "Images/Mickey_Mantle1952.jpg",
                             Location = "Red box in Attic",
                             PlayerName = "Micky Mantle",
                             Team = "New York Yankees",
@@ -131,9 +131,9 @@ namespace PopPopTradingCardsDataAccess.Migrations
                             Booster = "Zendikar",
                             CMC = 5,
                             Color = "Black",
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Ob_Nixilis_the_Fallen.jpg",
+                            Image = "Images/Ob_Nixilis_the_Fallen.jpg",
                             Location = "",
-                            Name = "Ob Bixilis, the Fallen",
+                            Name = "Ob Nixilis, the Fallen",
                             Rarity = "Ultra Rare",
                             Type = "Legendary Creature - Demon",
                             UserId = -1
@@ -144,9 +144,9 @@ namespace PopPopTradingCardsDataAccess.Migrations
                             Booster = "Zendikar",
                             CMC = 5,
                             Color = "Black",
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Ob_Nixilis_the_Fallen.jpg",
+                            Image = "Images/Ob_Nixilis_the_Fallen.jpg",
                             Location = "",
-                            Name = "Ob Bixilis, the Fallen",
+                            Name = "Ob Nixilis, the Fallen",
                             Rarity = "Ultra Rare",
                             Type = "Legendary Creature - Demon",
                             UserId = 1
@@ -157,7 +157,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                             Booster = "Zendikar",
                             CMC = 3,
                             Color = "Black",
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Vampire_Knighthawk_Zendikar.jfif",
+                            Image = "Images/Vampire_Knighthawk_Zendikar.jfif",
                             Location = "Basement, red binder",
                             Name = "Vampire Nighthawk",
                             Rarity = "Uncommon",
@@ -170,7 +170,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                             Booster = "Zendikar",
                             CMC = 3,
                             Color = "Black",
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Vampire_Knighthawk_Zendikar.jfif",
+                            Image = "Images/Vampire_Knighthawk_Zendikar.jfif",
                             Location = "",
                             Name = "Vampire Nighthawk",
                             Rarity = "Uncommon",
@@ -183,7 +183,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                             Booster = "Zendikar",
                             CMC = 3,
                             Color = "Black",
-                            Image = "/C:/Users/ZFisher-LegionY530/Desktop/PopPopTradingCards/PopPopTradingCards/PopPopTradingCards/Images/Vampire_Knighthawk_Zendikar.jfif",
+                            Image = "Images/Vampire_Knighthawk_Zendikar.jfif",
                             Location = "Basement, red binder",
                             Name = "Vampire Nighthawk",
                             Rarity = "Uncommon",
@@ -233,7 +233,7 @@ namespace PopPopTradingCardsDataAccess.Migrations
                         new
                         {
                             Id = 3,
-                            Password = "???b??^????jYh?)?x^?K?? ???? ",
+                            Password = "Both",
                             Username = "Both"
                         },
                         new

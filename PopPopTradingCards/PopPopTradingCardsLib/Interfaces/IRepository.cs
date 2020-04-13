@@ -9,6 +9,7 @@ namespace PopPopTradingCardsLib.Interfaces
         public int Login(string name, string pass);
         public bool CheckAvailability(string name);
         IEnumerable<User> GetAllUsers();
+        User GetUserById(int id);
         IEnumerable<MagicCard> GetMagicCards();
         IEnumerable<MagicCard> GetMagicCards(int? id);
         IEnumerable<BaseballCard> GetBaseballCards();
