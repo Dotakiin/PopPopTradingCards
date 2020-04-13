@@ -80,5 +80,31 @@ namespace PopPopTradingCardsWebUI.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        [HttpGet]
+        public IActionResult Search(string searchString = null)
+        {
+            // Get all users whose name contains the search string
+            var userResults = (string.IsNullOrEmpty(searchString))
+                ? _repo.GetAllUsers()
+                : _repo.GetAllUsers().Where(u => u.Username.Contains(searchString));
+
+            // Get all users who are not the current user
+            userResults = userResults.Where(u => u.Username != HttpContext.Session.GetString("Username"));
+
+            return View(userResults);
+        }
+
+        //[HttpGet]
+        //public /*async Task<IActionResult>*/ IActionResult SearchForUsers(string searchString = null)
+        //{
+        //    ViewData["UserSearch"] = searchString;
+
+        //    var userResults = (string.IsNullOrEmpty(searchString))
+        //        ? _repo.GetAllUsers()
+        //        : _repo.GetAllUsers().Where(u => u.Username.Contains(searchString));
+
+        //    return View("Search", userResults);
+        //}
     }
 }

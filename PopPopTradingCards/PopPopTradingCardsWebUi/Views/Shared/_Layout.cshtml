@@ -37,7 +37,8 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Card" asp-action="MyCollections">@Context.Session.GetString("Username")'s Collections</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Card" asp-action="OtherCollections">Browse Others</a>
+                                @*<a class="nav-link text-dark" asp-area="" asp-controller="Card" asp-action="OtherCollections">Browse Others</a>*@
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Search">Browse Others</a>
                             </li>
                         }
                     </ul>
