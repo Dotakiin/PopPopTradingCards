@@ -106,7 +106,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "Basement, red binder",
                              UserId = 1,
-                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Nighthawk.jpg"
                         },
                         new MagicCard()
                         {
@@ -119,7 +119,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "",
                              UserId = -1,
-                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Nighthawk.jpg"
                         },
                         new MagicCard()
                         {
@@ -132,7 +132,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "Basement, red binder",
                              UserId = 3,
-                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Nighthawk.jpg"
                         }
                     });
             });
