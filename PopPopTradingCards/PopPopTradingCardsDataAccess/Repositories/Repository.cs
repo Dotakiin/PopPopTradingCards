@@ -181,7 +181,8 @@ namespace PopPopTradingCardsDataAccess.Repositories
         public void PutMagicCard(Lib.MagicCard card)
         {
             var e_card = Mapper.Map(card);
-            _context.MagicCard.Update(e_card);
+            var group = _context.MagicCard.First(g => g.Id == card.Id);
+            _context.Entry(group).CurrentValues.SetValues(card);
             _context.SaveChanges();
         }
 

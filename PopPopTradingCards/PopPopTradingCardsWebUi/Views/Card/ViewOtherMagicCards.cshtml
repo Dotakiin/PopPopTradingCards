@@ -1,0 +1,13 @@
+﻿@model List<PopPopTradingCardsLib.Models.MagicCard>
+@{
+    ViewData["Title"] = "ViewOtherMagicCards";
+}
+
+<h1>ViewMagicCards</h1>
+@foreach (var card in Model)
+{
+    string img = card.Image;
+    string route = "OtherMagicCardDetails/" + card.Id.ToString();
+    string name = card.Name;
+    <a href=@route><img src=@img alt=@name width="180" /></a>
+}

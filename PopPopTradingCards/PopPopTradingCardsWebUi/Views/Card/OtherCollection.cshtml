@@ -5,13 +5,13 @@
 @if (Model.MagicCards.Count() > 0)
 {
     @*<h2>This user has Magic cards</h2>*@
-    <a asp-action="ViewMagicCards" title="View Magic Cards"><img src="https://mtg.gamepedia.com/File:Magic_card_back.jpg" /></a>
+    <a asp-action="ViewOtherMagicCards" title="View Magic Cards"><img src="~/Images/MTG.jpg" width="180"/></a>
 }
 
 @if (Model.BaseballCards.Count() > 0)
 {
     @*<h2>This user has Baseball cards</h2>*@
-    <a asp-action="ViewBaseballCards" title="View Baseball Cards"><img src="Images/Baseball.jpg" /></a>
+    <a asp-action="ViewBaseballCards" title="View Baseball Cards"><img src="/Images/Baseball.jpg" width="180"/></a>
 }
 
 @if (Model.MagicCards.Count() == 0 && Model.BaseballCards.Count() == 0)
