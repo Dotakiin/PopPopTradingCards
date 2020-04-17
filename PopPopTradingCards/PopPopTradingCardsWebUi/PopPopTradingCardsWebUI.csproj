@@ -9,7 +9,7 @@
     <None Include="wwwroot\Images\Mickey_Mantle1952.jpg" />
     <None Include="wwwroot\Images\MTG.jpg" />
     <None Include="wwwroot\Images\Ob_Nixilis_the_Fallen.jpg" />
-    <None Include="wwwroot\Images\Vampire_Knighthawk_Zendikar.jfif" />
+    <None Include="wwwroot\Images\Vampire_Nighthawk.jpg" />
   </ItemGroup>
 
   <ItemGroup>
