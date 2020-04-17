@@ -4,16 +4,21 @@
 }
 
 <h1>MyCollections</h1>
-
+<p>
 @if (ViewBag.MTG == "yes")
 {
-<a asp-action="ViewMagicCards"><img src="https://mtg.gamepedia.com/File:Magic_card_back.jpg" /></a>
+<a asp-action="ViewMagicCards"><img src="/Images/MTG.jpg" alt="Magic The Gathering" width="180"/></a>
 }
 @if (ViewBag.Baseball == "yes")
 {
-<a asp-action="ViewBaseballCards"><img src="Images/Baseball.jpg" /></a>
+<a asp-action="ViewBaseballCards"><img src="/Images/Baseball.jpg" alt="Baseball" width="180"/></a>
 }
+</p>
 @if (ViewBag.MTG != "yes" && ViewBag.Baseball != "yes")
 {
         <span>You have no cards in our system. Add a card <a asp-action="AddCard">here.</a></span>
+}
+@if(ViewBag.MTG=="yes" || ViewBag.Baseball == "yes")
+{
+<span>Add a card <a asp-action="AddCard">here.</a></span>
 }

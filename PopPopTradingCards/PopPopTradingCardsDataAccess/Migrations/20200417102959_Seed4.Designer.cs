@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PopPopTradingCardsDataAccess;
 
 namespace PopPopTradingCardsDataAccess.Migrations
 {
     [DbContext(typeof(PopPopTradingCardsDbContext))]
-    partial class PopPopTradingCardsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200417102959_Seed4")]
+    partial class Seed4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

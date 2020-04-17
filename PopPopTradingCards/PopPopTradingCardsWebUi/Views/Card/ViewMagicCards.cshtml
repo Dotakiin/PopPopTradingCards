@@ -4,9 +4,10 @@
 }
 
 <h1>ViewMagicCards</h1>
-<h4>Under Construction</h4>
 @foreach(var card in Model)
 {
-    string a = card.Image;
-    <img src=a />
+    string img = card.Image;
+    string route = "MagicCardDetails/"+card.Id.ToString();
+    string name = card.Name;
+<a href=@route><img src=@img alt=@name width="180" /></a>
 }

@@ -50,6 +50,26 @@ namespace PopPopTradingCardsWebUI.Controllers
             var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("Id"));
             return View(Cards);
         }
+        public IActionResult MagicCardDetails([FromRoute]int id = 1)
+        {
+            TempData["id"] = id;
+            Lib.MagicCard card = _repo.GetMagicCard(id);
+            EditLocation l = new EditLocation()
+            {
+                Card = card
+            };
+            return View(l);
+        }
+        public IActionResult OtherMagicCardDetails([FromRoute]int id=1)
+        {
+            TempData["id"] = id;
+            Lib.MagicCard card = _repo.GetMagicCard(id);
+            EditLocation l = new EditLocation()
+            {
+                Card = card
+            };
+            return View(l);
+        }
         public IActionResult OtherCollections()
         {
             return View();
@@ -139,6 +159,42 @@ namespace PopPopTradingCardsWebUI.Controllers
             }
         }
 
+        public IActionResult DeleteMagicCard()
+        {
+            int id = Convert.ToInt32(TempData["id"].ToString());
+            _repo.DeleteMagicCard(id);
+            var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("Id"));
+            if (Cards.Count() > 0)
+            {
+                ViewBag.MTG = "yes";
+            }
+            var Cards2 = _repo.GetBaseballCards(HttpContext.Session.GetInt32("Id"));
+            if (Cards2.Count() > 0)
+            {
+                ViewBag.Baseball = "yes";
+            }
+            return View("MyCollections");
+        }
+        public IActionResult PutMagicCard(EditLocation c, IFormCollection form)
+        {
+            try
+            {
+                int id = Convert.ToInt32(TempData["id"].ToString());
+                TempData["id"] = id;
+                c.Card = _repo.GetMagicCard(id);
+                c.Card.Location = c.NewLocation;
+                _repo.PutMagicCard(c.Card);
+                EditLocation l = new EditLocation()
+                {
+                    Card = c.Card
+                };
+                return View("MagicCardDetails", l);
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+        }
         // Post a new Magic card to the database
         public IActionResult PostMagicCard(AddMagicCardViewModels c, IFormCollection form)
         {
@@ -158,13 +214,13 @@ namespace PopPopTradingCardsWebUI.Controllers
                     UserId = Convert.ToInt32(HttpContext.Session.GetInt32("Id"))
                 };
                 _repo.PostMagicCard(card);
-                var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("id"));
+                var Cards = _repo.GetMagicCards(HttpContext.Session.GetInt32("Id"));
                 if (Cards.Count() > 0)
                 {
                     ViewBag.MTG = "yes";
                 }
-                var Cards2 = _repo.GetBaseballCards(HttpContext.Session.GetInt32("id"));
-                if (Cards.Count() > 0)
+                var Cards2 = _repo.GetBaseballCards(HttpContext.Session.GetInt32("Id"));
+                if (Cards2.Count() > 0)
                 {
                     ViewBag.Baseball = "yes";
                 }
@@ -191,20 +247,6 @@ namespace PopPopTradingCardsWebUI.Controllers
             }
         }
 
-        // Update an existing Magic card
-        public IActionResult PutMagicCard(Lib.MagicCard card)
-        {
-            try
-            {
-                _repo.PutMagicCard(card);
-
-                return NoContent();
-            }
-            catch(Exception)
-            {
-                return BadRequest();
-            }
-        }
 
         // Update an existing Baseball card
         public IActionResult PutBaseballCard(Lib.BaseballCard card)
@@ -212,21 +254,6 @@ namespace PopPopTradingCardsWebUI.Controllers
             try
             {
                 _repo.PutBaseballCard(card);
-
-                return NoContent();
-            }
-            catch(Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        // Delete an existing Magic card by its Id
-        public IActionResult DeleteMagicCard(int id)
-        {
-            try
-            {
-                _repo.DeleteMagicCard(id);
 
                 return NoContent();
             }
@@ -255,7 +282,7 @@ namespace PopPopTradingCardsWebUI.Controllers
         public IActionResult OtherCollection(int id)
         {
             var user = _repo.GetUserById(id);
-
+            TempData["otherid"] = id;
             if(user != null)
             {
                 var model = new OtherCollectionViewModel
@@ -269,6 +296,11 @@ namespace PopPopTradingCardsWebUI.Controllers
             }
 
             return View("Error");
+        }
+        public IActionResult ViewOtherMagicCards()
+        {
+            var Cards = _repo.GetMagicCards(Convert.ToInt32(TempData["otherid"].ToString()));
+            return View(Cards);
         }
     }
 }

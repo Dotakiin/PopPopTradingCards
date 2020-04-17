@@ -80,7 +80,7 @@ namespace PopPopTradingCardsDataAccess
                             Booster = "Zendikar",
                             Location = "",
                             UserId = -1,
-                            Image = "Images/Ob_Nixilis_the_Fallen.jpg"
+                            Image = "/Images/Ob_Nixilis_the_Fallen.jpg"
                         },
                         new MagicCard()
                         {
@@ -93,7 +93,7 @@ namespace PopPopTradingCardsDataAccess
                             Booster = "Zendikar",
                             Location = "",
                             UserId = 1,
-                            Image = "Images/Ob_Nixilis_the_Fallen.jpg"
+                            Image = "/Images/Ob_Nixilis_the_Fallen.jpg"
                         },
                         new MagicCard()
                         {
@@ -106,7 +106,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "Basement, red binder",
                              UserId = 1,
-                             Image = "Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
                         },
                         new MagicCard()
                         {
@@ -119,7 +119,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "",
                              UserId = -1,
-                             Image = "Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
                         },
                         new MagicCard()
                         {
@@ -132,7 +132,7 @@ namespace PopPopTradingCardsDataAccess
                              Booster = "Zendikar",
                              Location = "Basement, red binder",
                              UserId = 3,
-                             Image = "Images/Vampire_Knighthawk_Zendikar.jfif"
+                             Image = "/Images/Vampire_Knighthawk_Zendikar.jfif"
                         }
                     });
             });
@@ -151,7 +151,7 @@ namespace PopPopTradingCardsDataAccess
                          Team = "New York Yankees",
                          Year = 1952,
                          UserId = -1,
-                         Image = "Images/Mickey_Mantle1952.jpg"
+                         Image = "/Images/Mickey_Mantle1952.jpg"
                     },
                     new BaseballCard()
                     {
@@ -161,7 +161,7 @@ namespace PopPopTradingCardsDataAccess
                          Team = "New York Yankees",
                          Year = 1952,
                          UserId = 2,
-                         Image = "Images/Mickey_Mantle1952.jpg"
+                         Image = "/Images/Mickey_Mantle1952.jpg"
                     },
                     new BaseballCard()
                     {
@@ -171,7 +171,7 @@ namespace PopPopTradingCardsDataAccess
                          Team = "New York Yankees",
                          Year = 1952,
                          UserId = 3,
-                         Image = "Images/Mickey_Mantle1952.jpg"
+                         Image = "/Images/Mickey_Mantle1952.jpg"
                     }
                 });
             });
